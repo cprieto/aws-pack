@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import pip
 import sys
 import zipfile
@@ -8,7 +9,8 @@ from shutil import rmtree
 import argparse
 
 def install_dependencies(req_fname, on):
-    pip.main(['install', '-r', req_fname, '-t', on])
+    if path.exists(req_fname):
+        pip.main(['install', '-r', req_fname, '-t', on])
 
 def clean(on):
     if path.isdir(on):
@@ -32,7 +34,8 @@ def default_filename():
     fname = basename(getcwd()) + '.zip'
     return path.join(getcwd(), fname)
 
-if __name__ == '__main__':
+# TODO: It will be nice to support this as an external function
+def main():
     parser = argparse.ArgumentParser(description='Package a Python AWS Lambda.')
     parser.add_argument('-r', '--requirements', 
             help='Pip requirement file, default is requirements.txt', 
@@ -53,3 +56,6 @@ if __name__ == '__main__':
         add_files(args.files, args.output)
     finally:
         clean(args.tempdir)
+
+if __name__ == '__main__':
+    main()
