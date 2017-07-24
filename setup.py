@@ -25,7 +25,7 @@ setup(name='aws-lambda-packer',
           'Programming Language :: Python :: 2',
           'Programming Language :: Python :: 3',
           'Topic :: Utilities',
-          'License :: OSI Approved :: MIT License']
+          'License :: OSI Approved :: MIT License'],
       entry_points = {
-          'console_scripts': ['lpack=lpack:main']
+          'console_scripts': ['aws-pack=lpack.command_line:main']
           })
